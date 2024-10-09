@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{% static 'css\style.css' %}">
+    <link rel="stylesheet" href="{% static 'css\bootstrap.min.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Lobster+Two:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+</head>
+<style>
+    card{
+        display: block;
+    }
+</style>
+<body>
+    <h1>Login</h1>
+        <div class="card">
+            <div class="card-body">
+                <form method="post">
+                    {% csrf_token %}
+                    {{logform.as_p}}
+                    <button><a href="{% url 'home' %}">Login</a></button>
+                </form>
+            </div>
+        </div>
+    <script src="{% static 'js\bootstrap.min.js' %}"></script>
+</body>
+</html>

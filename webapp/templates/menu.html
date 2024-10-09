@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+<title>Menu</title>
+{% endblock title %}
+
+{% block body %}
+
+    <div class="row">
+        {% for i in product %}
+            <div class="col-md-6">
+                <img src="{{i.image.url}}" class="card-img-top" alt="..." height="200px">
+            </div>
+            <div class="col-md-6">
+                <h5 class="card-title">{{i.foodname|upper}}</h5>
+                <p class="card-text">{{i.price}}</p>
+                <a href="#">Add to Cart</a>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock body %}

@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %} 
+    <div class="container">
+        <div class="row">
+            <img src="{% static  'images\tycoffee.gif' %}" class="mx-4" width="400" height="500">
+            <h2>Thank You for Registering with Us, Please Proceed to Login</h2>
+            <button type="submit" class="btn btn-success"> <a href="{% url 'login' %}" style="text-decoration: none; color: beige;">Login</a></button>
+        </div>
+    </div>
+{% endblock content %}
