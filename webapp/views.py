@@ -4,6 +4,7 @@ from .models import Category, Food
 from .forms import registrationForm
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.forms import AuthenticationForm
+from django.db.models import Q
 # Create your views here.
 def show(request):
     category = Category.objects.all()
@@ -34,12 +35,13 @@ def register(request):
         uform = registrationForm(request.POST)
         if uform.is_valid():
             uform.save()
-            return redirect('thankyou')
+            return redirect('thanks')
         
     else:
         uform = registrationForm()
     return render(request, 'register.html', {'forms': uform})
-    
+
+# Login Form
 def login(request):
     if request.method == "POST":
         lform = AuthenticationForm(request.POST)
@@ -49,14 +51,28 @@ def login(request):
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request,user)
-            return redirect('home')
+                return redirect('home')
     else:
         lform = AuthenticationForm()
-        return render(request, 'login.html', {'logform': lform})
-    
+    return render(request, 'login.html', {'logform': lform})
+
+# Logout Form
 def user_logout(request):
     logout(request)
     return redirect('home')
 
 def tym(request):
     return render(request, 'thankyou.html')
+
+# Price Range functionality
+def range(request):
+    max=request.GET['maxprice']
+    min=request.GET['minprice']
+    print(max)
+    print(min)
+    q1=Q(price__gte=min)
+    q2=Q(price__lte=max)
+    p=Food.objects.filter(q1 & q2)
+    context={}
+    context['product']=p
+    return render(request, "index.html", context)
