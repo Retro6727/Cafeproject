@@ -1,4 +1,4 @@
-<h1>Getting Started With Django Project on Visual Studio Code</h1>
+<h1>About The Project</h1>
 <i>This project is for demo only</i>
 
 <h3>Steps to install Django on Visual Studio Code</h3>
