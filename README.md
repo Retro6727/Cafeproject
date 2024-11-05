@@ -42,11 +42,11 @@
 
 <p>Then, you can create the project folder and start a new Django project by running the following command:</p>
 
-<pre><code>django-admin startproject cafe</code></pre>
+<pre><code>django-admin startproject cafeproject</code></pre>
 
 <p>Next, navigate into the newly created directory:</p>
 
-<pre><code>cd cafe</code></pre>
+<pre><code>cd cafeproject</code></pre>
 
 <p>Now, you can run the server to check if everything is working:</p>
 
@@ -56,7 +56,7 @@
 
 <h3>Project Structure</h3>
 
-The project structure for the "Cafe" app will look something like this:
+The project structure for the "webapp" app will look something like this:
 
 <pre>
 cafe/
@@ -75,8 +75,8 @@ cafe/
 
 <p>Where:</p>
 <ul>
-  <li><code>cafe/settings.py</code> contains the project settings.</li>
-  <li><code>cafe/urls.py</code> is where you define your project's URLs.</li>
+  <li><code>cafeproject/settings.py</code> contains the project settings.</li>
+  <li><code>cafeproject/urls.py</code> is where you define your project's URLs.</li>
   <li><code>menu/models.py</code> will define the models for the menu items and orders.</li>
   <li><code>menu/views.py</code> will handle the logic for displaying the menu and processing orders.</li>
 </ul>
