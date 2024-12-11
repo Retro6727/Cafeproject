@@ -1,22 +1,61 @@
 {% extends 'base.html' %}
+
 {% load static %}
 
 {% block title %}
 <title>Menu</title>
 {% endblock title %}
 
-{% block body %}
+{% block extra_head %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    
+{% endblock extra_head %}
 
-    <div class="row">
-        {% for i in product %}
-            <div class="col-md-6">
-                <img src="{{i.image.url}}" class="card-img-top" alt="..." height="200px">
-            </div>
-            <div class="col-md-6">
-                <h5 class="card-title">{{i.foodname|upper}}</h5>
-                <p class="card-text">{{i.price}}</p>
-                <a href="#">Add to Cart</a>
-            </div>
-        {% endfor %}
+{% block content %}
+    <div class="container">
+        <div class="row">
+              <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">Menu</li>
+                </ol>
+              </nav>
+        </div>
     </div>
-{% endblock body %}
+
+   <div class="container-fluid py-5">
+        <div class="row">
+            {% for product in product %}
+                <div class="col-md-6">
+                    <img src="{{product.image.url}}" class="card-img-top rounded-circle" alt="Card image cap" style="width: 100%; height: auto;" style="width: 200px; height: 200px; border: 1px solid #ddd; padding: 5px; border-radius: 50%; object-fit: cover;">
+                </div>
+                <div class="col-md-6">
+                    <h3 class="card-title">{{product.foodname}}</h3>
+                    <p class="card-text">{{product.description}}</p>
+                    <p class="card-text text-warning" style="font-weight: bold;">${{product.price}}</p>
+                    <a href="{% url 'addcart' product.id %}" class="btn btn-success">Add to Cart</a>
+                    <a href="{% url 'viewcart' %}" class="btn btn-danger">View Cart</a>
+                    {% if success %}
+                         <div class="alert alert-success">
+                            {{success}}
+                         </div>
+                    {% endif %}
+                    {% if msg %}
+                    <div class="alert alert-danger">    
+                       {{msg}}
+                    </div>
+               {% endif %}
+                </div>
+                </div>
+            {% endfor %}
+
+        </div>
+    </div>
+
+    <footer>
+        {% block footer %}
+            {% include 'footer.html' %}
+        {% endblock %}
+    </footer>
+    <script src="{% static 'js/script.js' %}"></script>
+{% endblock content %}

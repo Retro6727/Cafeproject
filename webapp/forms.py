@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
+from .models import Customer
 
 class registrationForm(UserCreationForm):
     class Meta:
@@ -24,6 +25,18 @@ class registrationForm(UserCreationForm):
         'password2': forms.TextInput(attrs={'class':'form-label'}),
     }
 
+class UserAuthenticationForm(AuthenticationForm):
+    username = forms.CharField(
+        label="Enter Username",
+        widget=forms.TextInput(attrs={"class": "form-control"}),
+    )
+    password = forms.CharField(
+        label="Enter Password",
+        widget=forms.PasswordInput(attrs={"class": "form-control"}),
+    )
+    class Meta:
+        model=User
+        fileds=['username']
 '''
 from .models import Food
 
@@ -31,4 +44,17 @@ class foodform(forms.ModelForm):
     class Meta:
         model = Food
 '''
-        
+
+class AddressForm(forms.ModelForm):
+    class Meta:
+        model = Customer
+        fields = ['name', 'address' ,'city', 'state', 'pincode']
+    
+    labels = {
+        'Name' : 'Enter your name',
+        'Address' : 'Enter address',
+        'City' : 'Enter city',
+        'State' : 'Enter state',
+        'Pincode' : 'Enter pincode',
+    }
+

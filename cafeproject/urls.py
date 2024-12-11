@@ -16,8 +16,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('', include("webapp.urls")),
+    path('dashboard/', include("empapp.urls")),
     path('admin/', admin.site.urls),
+    path('', include('paypal.standard.ipn.urls')),
+    path('ratings/', include('star_ratings.urls', namespace='ratings')),
+    path('api-auth/', include('rest_framework.urls')),
 ]

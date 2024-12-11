@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 import os
+import paypalrestsdk
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -39,7 +40,16 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'webapp',
+    'crispy_forms',
+    'crispy_bootstrap4',
+    'payments',
+    'empapp',
+    'paypal.standard.ipn',
+    'star_ratings',
+    'rest_framework',
 ]
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -127,3 +137,16 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+PAYMENT_HOST = 'localhost:8000'
+PAYMENT_USES_SSL=False
+
+PAYPAL_RECIEVER_EMAIL = 'sb-m47v8c33907872@business.example.com'
+PAYPAL_TEST = True
+
+# paypalrestsdk.configure({
+#     "mode": "sandbox",
+#     "client_id": "AeXYamOPJ4SHxv7a0BfN_tG5b4iNdMhqye5WwVj1FTlMWMIR7RPKUjUy1lmWYzNaRLELil298YokPBaL",
+#     "client_secret": "EO8bNhYWSGXKwKbiMYkpngGlaCwjmh3zfGBr-mi5zIZf5svU6OhFvwNvP9vPqp1qOvvOFWp_i04dXgcf"
+# })
+

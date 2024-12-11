@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    Check Out
+{% endblock title %}
+
+{% block content %}
+<h1>Checkout</h1>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-8">
+            <h2>Orders</h2>
+            <div class="table table-responsive">
+                <table class="table table-hover">
+                    <thead class="table table-secondary">
+                        <tr>
+                            <th>Product</th>
+                            <th>Name</th>
+                            <th>Quantity</th>
+                            <th>Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for product in data %}
+                        <tr>
+                            <td><img src="{{product.pid.image.url}}" class="card-img-top" alt="{{product.pid.foodname}}" style="max-height: 80px; max-width: 80px;"></td>
+                            <td>{{product.pid.foodname}}</td>
+                            <td>
+                                {{product.qty}}
+                            </td>
+            
+                            <td>$ {{product.pid.price}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <form action="{% url 'checkout' %}" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="total_price" value="{{ total }}">
+                <input type="hidden" name="delivery_charge" value="{{ delivery_charges }}">
+            
+            </form>
+            {{paypal.render}}
+            <a href="{% url 'viewcart' %}"><button class="btn btn-warning shadow w-100">Go Back</button></a>
+        </div>
+        <div class="col-md-4">
+        <h1>Customer Details</h1>
+            <table class="table">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Name</th>
+                        <th>Address</th>
+                        <th>City</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for i in customer_details %}
+                    <tr>
+                        <td>{{ i.name }}</td>
+                        <td>{{ i.address }}</td>
+                        <td>{{i.city}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
+
+{% endblock content %}

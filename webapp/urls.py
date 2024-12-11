@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import include, path
 from . import views
 from django.conf import settings
 from django.conf.urls.static import static
@@ -9,9 +9,20 @@ urlpatterns = [
     path('product/<int:id>/', views.cat_view, name='product'),
     path('addprod/<int:id>/',views.addprod,name="addprod"),
     path('register/', views.register, name='register'),
-    path('login/', views.login, name='login'),
+    path('login_details/', views.login_details, name='login_details'),
     path('logout/', views.user_logout, name='logout'),
     path('ty/', views.tym, name='thanks'),
     path('range/', views.range, name='range'),
+    path('addcart/<int:pid>/', views.addcart, name='addcart'),
+    path('viewcart/', views.viewCart, name='viewcart'),
+    path('remove/<int:cid>',views.remove),
+    path('updateqty/<qv>/<cid>', views.updateqty),
+    path('checkout', views.checkout, name="checkout"),
+    path('customer_det', views.customer_detail, name="cdetail"),
+    path('ordered', views.placeorder, name="orderitems"),
+    path('success/', views.paymentsuccessful, name="paymentsuccess"),
+    path('failed/', views.paymentfailed, name="paymentfailed"),
+    path('drf_crud/', views.crud_api.as_view(), name='crudview'),
+    
     
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

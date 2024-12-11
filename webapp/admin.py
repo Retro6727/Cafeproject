@@ -13,4 +13,3 @@ admin.site.register(Category,adminCategorymodel)
 class adminFoodmodel(admin.ModelAdmin):
     list_display = ['foodname', 'available', 'price', 'description', 'image']
 admin.site.register(Food,adminFoodmodel)
-        

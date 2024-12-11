@@ -4,9 +4,9 @@
 {% block content %} 
     <div class="container">
         <div class="row">
-            <img src="{% static  'images\tycoffee.gif' %}" class="mx-4" width="400" height="500">
-            <h2>Thank You for Registering with Us, Please Proceed to Login</h2>
-            <button type="submit" class="btn btn-success"> <a href="{% url 'login' %}" style="text-decoration: none; color: beige;">Login</a></button>
+            <img src="{% static  'images\tycoffee.gif' %}" class="mx-4" width="800" height="600">
+            <h2 class="text-center py-4">Thank You for Registering with Us, Please Proceed to Login</h2>
+            <a href="{% url 'login_details' %}" style="text-decoration: none; color: beige;"><button type="submit" class="btn btn-success w-100">Login</button></a>
         </div>
     </div>
 {% endblock content %}
